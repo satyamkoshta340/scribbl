@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #play-ground{
+            border: 2px solid black;
+            background: white;
+        }
+        body{
+            margin: 0;
+        }
+        .canvas-box{
+            /* background: red; */
+            border: 2px solid black;
+            padding: 2rem;
+            width: 670px;
+            box-sizing: border-box;
+        }
+        .canvas-tools{
+            display: flex;
+        }
+        .tool{
+            width: 1.5rem;
+            height: 1.5rem;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            cursor: pointer;
+            border-right: 1px solid black;
+        }
+        .paint-green{
+            background-color: rgb(0, 128, 0);
+        }
+        .paint-red{
+            background-color: rgb(255, 0, 0);
+        }
+        .paint-blue{
+            background-color: rgb(0, 0, 255);
+        }
+        .paint-white{
+            background-color: rgb(255, 255, 255);
+            
+        }
+    </style>
+
+</head>
+<body>
+    <div class="canvas-box">
+        <canvas id="play-ground" width="600" height="400"></canvas>
+        <div class="canvas-tools">
+            <div class="tool paint-green" onclick="paint('rgb(0, 128, 0)')"></div>
+            <div class="tool paint-blue" onclick="paint('rgb(0, 0, 255)')"></div>
+            <div class="tool paint-red" onclick="paint('rgb(255, 0, 0)')"></div>
+            <div class="tool paint-white" onclick="paint('rgb(255, 255, 255)')"></div>
+            <div class="tool eraser" onclick="erase()">E</div>
+            <div class="tool pen" onclick="selectPen()">P</div>
+            <div class="tool lineWidth" onclick="setLineWidth(1)">1</div>
+            <div class="tool lineWidth" onclick="setLineWidth(3)">2</div>
+            <div class="tool lineWidth" onclick="setLineWidth(5)">3</div>
+
+        </div>
+    </div> 
+    
+
+    <script>
+        var fontX = 5;
+        var fontY = 5;
+        var mayDrag;
+        var currStyle = 'rgb(255, 255, 255)';
+        var eraser = false;
+        var prevX, prevY, currX, currY;
+
+        var canvas = document.getElementById("play-ground");
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = currStyle;
+        
+
+        canvas.addEventListener("mousedown", (e)=>{
+            prevX = e.offsetX;
+            prevY = e.offsetY;
+            mayDrag = true;
+        })
+
+        canvas.addEventListener("mousemove", (e)=>{
+            // console.log(e.offsetX);
+            currX = e.offsetX;
+            currY = e.offsetY;
+            if(mayDrag){
+                // ctx.fillRect(e.offsetX, e.offsetY, fontX, fontY);
+
+                // try lines
+                if(eraser){
+                    ctx.fillStyle = currStyle;
+                    ctx.fillRect(e.offsetX, e.offsetY, fontX, fontY);
+                }
+                else{
+                    ctx.fillStyle = 'rgb(0,0,0)';
+                    ctx.beginPath();
+                    ctx.moveTo(prevX, prevY);
+                    ctx.lineTo(currX, currY);
+                    ctx.stroke();
+                    prevX = currX;
+                    prevY = currY;
+                }
+                
+            }
+        })
+
+        canvas.addEventListener("mouseup", (e)=>{
+            mayDrag = false;
+        })
+            
+
+        const paint = (color)=>{
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, 600, 400);
+            currStyle = color;
+        }
+
+        const erase = ()=>{
+            eraser = true;
+        }
+        const selectPen = () =>{eraser = false}
+        const setLineWidth = (n) =>{
+            ctx.lineWidth = n;
+            fontX = 5*n;
+            fontY = 5*n;
+        }
+    </script>
+</body>
+</html>
