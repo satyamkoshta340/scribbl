@@ -1,0 +1,38 @@
+#play-ground{
+    border: 2px solid black;
+    background: white;
+}
+body{
+    margin: 0;
+}
+.canvas-box{
+    /* background: red; */
+    border: 2px solid black;
+    padding: 2rem;
+    width: 670px;
+    box-sizing: border-box;
+}
+.canvas-tools{
+    display: flex;
+}
+.tool{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    border-right: 1px solid black;
+}
+.paint-green{
+    background-color: rgb(0, 128, 0);
+}
+.paint-red{
+    background-color: rgb(255, 0, 0);
+}
+.paint-blue{
+    background-color: rgb(0, 0, 255);
+}
+.paint-white{
+    background-color: rgb(255, 255, 255);
+    
+}
