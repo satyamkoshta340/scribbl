@@ -6,12 +6,13 @@ const server = http.createServer(app);
 
 
 const ChatHandlers = require("./handlers/chat_handlers");
+const CanvasHandlers = require("./handlers/canvas_handlers");
 const GameSocketService = require("./services/game_socket.js");
 let gameSocket = new GameSocketService();
 gameSocket.init(server);
 
 ChatHandlers(gameSocket.getInstance());
-
+CanvasHandlers(gameSocket.getInstance());
 // const { instrument } = require("@socket.io/admin-ui");
 
 

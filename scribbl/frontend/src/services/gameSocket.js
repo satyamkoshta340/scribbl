@@ -1,5 +1,6 @@
 const { io } = require("socket.io-client");
 
+
 class GameSocket {
     socket = null;
 
@@ -16,4 +17,7 @@ class GameSocket {
 }
 // const socket =  io("http://127.0.0.1:3000");
 const socket = new GameSocket();
-module.exports = GameSocket;
+socket.init("http://127.0.0.1:8000");
+// module.exports = GameSocket;
+
+export default socket;

@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-// import {io} from "socket.io-client";
-const GameSocket = require("../services/gameSocket")
-// import socket from "../services/gameSocket";
+import React from 'react'
+import gameSocket from "../services/gameSocket.js";
+
 const displayMessage = (m)=>{
     const div = document.createElement("div");
     div.textContent = m;
     document.querySelector("#message-container").append(div);
 }
 
-const socket = GameSocket.getSocket();
+const socket = gameSocket.getSocket();
 // const socket = io("http://127.0.0.1:8000");
 socket.on('connect', () =>{
     displayMessage(`You connected with id -> ${socket.id}`);
@@ -16,7 +15,7 @@ socket.on('connect', () =>{
 socket.on('recieve-messages', message =>{
     displayMessage(message);
 })
-socket.emit('custom-event', 10, "Socketss", {a: 'wind'})
+// socket.emit('custom-event', 10, "Socketss", {a: 'wind'})
 
 
 function sendMessage(e) {

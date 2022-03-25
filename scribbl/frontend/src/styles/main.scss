@@ -1,1 +1,32 @@
-@import "./components/canvas.scss"
+@import "./setting/variables.scss";
+@import "./ui/home.scss";
+@import "./ui/landing.scss";
+@import "./components/canvas.scss";
+
+.root{
+    width: 100hh;
+    height: 100vh;
+    position: relative;
+    // background-color: $pale;
+    background: repeating-linear-gradient(to right, transparent, transparent 10px, $green 10px, $green 20px), $pale;
+
+}
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-col-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    background: $orange;
+    border: 2px solid black;
+    cursor :pointer;
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
