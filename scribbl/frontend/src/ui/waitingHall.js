@@ -19,6 +19,7 @@ export default function WaitingHall() {
     const toggleRule = ()=>{
       setSettingVisibility(false);
       setRuleVisibility(!ruleVisibility);
+      setPlayers([]);
     }
     
     const socket = gameSocket.getSocket();
