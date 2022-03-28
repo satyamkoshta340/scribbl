@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Link, useParams,} from "react-router-dom";
+import gameSocket from '../services/gameSocket';
 
 export default function WaitingHall() {
   let params = useParams();
@@ -18,8 +19,13 @@ export default function WaitingHall() {
     const toggleRule = ()=>{
       setSettingVisibility(false);
       setRuleVisibility(!ruleVisibility);
-      
     }
+    
+    const socket = gameSocket.getSocket();
+    socket.emit("join-room", id, ()=>{
+      console.log("room joined");
+    })
+    
   return (
     <div className='root flex-col-conatiner'>
         <Link to={`/gamePlay/${id}`} className='btn start'>Start</Link>
