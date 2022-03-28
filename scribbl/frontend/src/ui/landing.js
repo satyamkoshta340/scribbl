@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Link, useParams} from "react-router-dom";
 
 var fontX = 5;
 var fontY = 5;
@@ -42,6 +43,9 @@ const drawOnCanvas = (prevX, prevY, currX, currY) =>{
   
 }
 export default function Landing() {
+  
+  const params = useParams();
+  const id = params.id;
   useEffect(()=>{
     canvas = document.getElementById("play-ground");
     ctx = canvas.getContext('2d');
@@ -98,7 +102,8 @@ export default function Landing() {
           </div>
         </div> 
 
-        <div className='flex-container btn start start-landing'>Start</div>
+        <Link to={`/waitingHall/${id}`} className='flex-container btn start start-landing'>Start</Link>
+        
     </div>
   )
 }

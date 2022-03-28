@@ -1,0 +1,39 @@
+
+.waitingHall-btn{
+    position: absolute;
+    top: 4rem;
+    border: 2px solid $blue;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 900;
+    background: radial-gradient($blue, $dark-blue);
+    cursor: pointer;
+}
+
+.setting-btn{
+    left: 1rem;
+}
+
+.rule-btn{
+    right: 1rem;
+}
+
+.setting-box{
+    width:50%;
+    background: darken($green, 20%);;
+}
+
+.rule-box{
+    width:55%;
+    background: darken($green, 20%);
+}
+
+.active{
+    background: radial-gradient($green, darken($green, 80%));
+    border: 2px solid $green;
+}

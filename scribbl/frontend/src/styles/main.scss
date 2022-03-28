@@ -1,9 +1,11 @@
 @import "./setting/variables.scss";
 @import "./ui/home.scss";
 @import "./ui/landing.scss";
+@import "./ui/waitingHall.scss";
 @import "./components/canvas.scss";
 
 .root{
+    font-family: 'Caveat Brush', cursive;
     width: 100hh;
     height: 100vh;
     position: relative;
@@ -12,6 +14,7 @@
 
 }
 .flex-container{
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,4 +32,5 @@
     cursor :pointer;
     box-sizing: border-box;
     padding: 0.5rem;
+    text-align: center;
 }
