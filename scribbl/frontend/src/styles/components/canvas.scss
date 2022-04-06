@@ -11,17 +11,20 @@ body{
     padding: 2rem;
     width: 670px;
     box-sizing: border-box;
+    background: $dark-blue;
 }
 .canvas-tools{
     display: flex;
 }
 .tool{
-    width: 1.5rem;
-    height: 1.5rem;
+    background: $blue;
+    width: 2rem;
+    height: 2rem;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     cursor: pointer;
     border-right: 1px solid black;
+    font-size: large;
 }
 .paint-green{
     background-color: rgb(0, 128, 0);

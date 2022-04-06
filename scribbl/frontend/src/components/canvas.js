@@ -56,9 +56,7 @@ const setLineWidth = (n) =>{
     fontY = 5*n;
 }
 
-socket.on("connect", ()=>{
-    console.log("connected");
-})
+
 socket.on("draw/command", (commands)=>{
     console.log("command");
     commands.forEach(command => {
@@ -121,27 +119,27 @@ export default function Canvas() {
     <div className="canvas-box">
         <canvas id="play-ground" width="600" height="400"></canvas>
         <div className="canvas-tools">
-            <div className="tool paint-green" onClick={() =>{
+            <div className="tool paint-green flex-container" onClick={() =>{
                 sendDrawCommand(3,'rgb(0, 128, 0)' , 0);
                 paint('rgb(0, 128, 0)')}}></div>
-            <div className="tool paint-blue" onClick={() =>{
+            <div className="tool paint-blue flex-container" onClick={() =>{
                 sendDrawCommand(3, 'rgb(0, 0, 255)', 0);
                 paint('rgb(0, 0, 255)')}}></div>
-            <div className="tool paint-red" onClick={() =>{
+            <div className="tool paint-red flex-container" onClick={() =>{
                 sendDrawCommand(3, 'rgb(255, 0, 0)', 0);
                 paint('rgb(255, 0, 0)')}}></div>
-            <div className="tool paint-white" onClick={ ()=>{
+            <div className="tool paint-white flex-container" onClick={ ()=>{
                 sendDrawCommand(3, 'rgb(255, 255, 255)', 0);
                 paint('rgb(255, 255, 255)')}}></div>
-            <div className="tool eraser" onClick={ ()=>erase()}>E</div>
+            <div className="tool eraser flex-container" onClick={ ()=>erase()}>E</div>
             <div className="tool pen" onClick={()=>selectPen()}>✏️</div>
-            <div className="tool lineWidth" onClick={ ()=>{
+            <div className="tool lineWidth flex-container" onClick={ ()=>{
                 sendDrawCommand(2, 1, 0);
                 setLineWidth(1)}}>1</div>
-            <div className="tool lineWidth" onClick={ ()=>{
+            <div className="tool lineWidth flex-container" onClick={ ()=>{
                 sendDrawCommand(2, 3, 0);
                 setLineWidth(3)}}>2</div>
-            <div className="tool lineWidth" onClick={ ()=>{
+            <div className="tool lineWidth flex-container" onClick={ ()=>{
                 sendDrawCommand(2, 5, 0);
                 setLineWidth(5)}}>3</div>
 

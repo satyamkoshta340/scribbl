@@ -1,0 +1,95 @@
+.player-container{
+    border: 2px solid black;
+    background-color: $dark-blue;
+    position: relative;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.player-container::-webkit-scrollbar {
+    display: none;
+}
+
+.players{
+    width: 15rem;
+    height: 20rem;
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin: 1rem;
+    background-color: $blue;
+
+    // overflow-y: auto;
+}
+
+.player-item{
+    height: 2rem;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: space-between;
+}
+
+.pop-up{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(105, 105, 105, 0.452);
+    display: none;
+}
+
+.pop-up-inside{
+    width: 20rem;
+    height: 20rem;
+    background-color: $orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200%;
+    transition: height 1s, width 1s, font-size 1s;
+}
+
+.pop-up-inside-active{
+    height: 0rem;
+    width: 0rem;
+    font-size: 0;
+}
+
+.pop-up-active{
+    display: flex;
+}
+
+.disabled{
+    pointer-events: none;
+}
+
+.current-word{
+    width: 100%;
+    background-color: $orange;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+}
+
+.clock{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 5rem;
+    height: 5rem;
+    border: 0.5rem solid $dark-blue;
+    box-sizing: border-box;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200%;
+    background: linear-gradient($green,$pale);
+}

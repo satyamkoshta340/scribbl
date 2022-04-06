@@ -1,7 +1,7 @@
 module.exports = function(io) {
         
     io.on('connection', socket => {
-        console.log(socket.id)
+        // console.log(socket.id)
 
         // socket.on('custom-event', (number, text, obj) =>{
         //     console.log(number, text, obj)
@@ -19,8 +19,8 @@ module.exports = function(io) {
         })
 
         socket.on('join-room', (room, displayMessage)=>{
-        socket.join(room);
-        displayMessage(`Joined room: ${room}`)
+            socket.join(room);
+            displayMessage(`Joined room: ${room}`)
         })
     })
 }

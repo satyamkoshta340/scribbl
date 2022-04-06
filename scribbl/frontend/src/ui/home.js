@@ -1,29 +1,34 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
+import GameSocket from "../services/gameSocket";
+import Avatar from '../components/avatar';
 
 
-
-const BASE_URL = "http://127.0.0.1:8000/api/sessions";
-export default function Home() {
-  const [id, setId] = useState("");
+const socket = GameSocket.getSocket();
+// console.log(socket);
+socket.on("connect", ()=>{
+  console.log("connected")
+  console.log(socket.id);
+})
+// const BASE_URL = "http://127.0.0.1:8000/api/sessions";
+export default function Home({name, setName, setFlag}) {
   const [isGenerated, setIsGenerated] = useState(false);
-
-  const startGame = async () => {
-    console.log("start game");
-    const response = await fetch(`${BASE_URL}`,{ 
-      method: "POST",
-      headers:{
-          'Content-Type': 'application/json'
-      },
-      mode: 'cors',
-      
-    })
-    
-    
-    const session = await response.json();
-    console.log(session);
-    return session.id;
+  
+  const [sessionId, setSessionId] = useState();
+  
+  const startSession = () => {
+    console.log("starting Session");
+    socket.emit("start-session", name);
   }
+  socket.on("game-started" , id => {
+    console.log(id);
+    setSessionId(id);
+    setIsGenerated(true);
+    setFlag(true);
+  })
+  // socket.on("disconnect", ()=>{
+  //   socket.emit("disconnect", sessionId);
+  // })
   
   function CopyToClipboard(containerid) {
     if (document.selection) {
@@ -36,21 +41,21 @@ export default function Home() {
       range.selectNode(document.getElementById(containerid));
       window.getSelection().addRange(range);
       document.execCommand("copy");
-      alert("Text has been copied, now paste in the text-area")
+      // alert("Text has been copied, now paste in the text-area")
     }
   }
   return (
 
     <div className='flex-col-container root' >
-        <div className='flex-container btn logo'>LOGO</div>
+        {/* <div className='flex-container btn logo'>LOGO</div> */}
+        <h1>Scribbl</h1>
+        <Avatar />
         {
           !isGenerated && <>
-            <div className="btn" onClick={async ()=>{
-              const ID = await startGame();
-              setId(ID);
-              console.log("done");
-              setIsGenerated(true);
-            }}>Generate</div>
+            <div>
+              <input type="text" id='name-input' onChange={(e)=>{setName(e.target.value)}}></input>
+            </div>
+            <div className="btn" onClick={()=>{ startSession()}}>Generate Room</div>
 
             <div>
               Generate room link to share with your Friends.
@@ -60,14 +65,31 @@ export default function Home() {
         {
           isGenerated && <>
             <div id='game-link'>
-              {`http://127.0.0.1:3000/landing/${id}`}
+              {`http://127.0.0.1:3000/landing/${sessionId}`}
             </div>
             <div className='btn'  onClick={()=> CopyToClipboard("game-link")}>copy</div>
-            <Link to={`/landing/${id}`} className='flex-container btn start'>Start</Link>
+            <Link to={`/waitingHall/${sessionId}`} className='flex-container btn start'>Start</Link>
           </>
         }
-        
-        
     </div>
   )
 }
+
+// const response = await fetch(`${BASE_URL}`,{ 
+    //   method: "POST",
+      
+    //   headers:{
+    //       'Content-Type': 'application/json'
+    //   },
+    //   mode: 'cors',
+    //   body: JSON.stringify({
+    //     'name': name,
+    //     'gameSocket': JSON.stringify(socket, decycle())
+    //   }),
+      
+    // })
+    
+    
+    // const gameSession = await response.json();
+    // // console.log(session);
+    // setSession(gameSession.session);

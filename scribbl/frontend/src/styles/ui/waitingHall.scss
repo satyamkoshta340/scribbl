@@ -1,7 +1,6 @@
-
 .waitingHall-btn{
     position: absolute;
-    top: 4rem;
+    top: 2rem;
     border: 2px solid $blue;
     border-radius: 50%;
     width: 3rem;
@@ -25,7 +24,10 @@
 
 .setting-box{
     width:50%;
-    background: darken($green, 20%);;
+    background: darken($green, 20%);
+    font-size: 150%;
+    height: 15rem;
+    max-height: 15rem;
 }
 
 .rule-box{
@@ -36,4 +38,49 @@
 .active{
     background: radial-gradient($green, darken($green, 80%));
     border: 2px solid $green;
+}
+
+
+#start-game-btn{
+    color: black;
+    position: absolute;
+    width: fit-content;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    top: 55%;
+    left: 40%;
+    right: 40%;
+    font-weight: 600;
+    font-size: 200%;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.active-players{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+}
+
+.player{
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    width: 150px;
+    height: 100%;
+    box-sizing: border-box;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-avatar{
+    width: 100%;
+    height: 100%;
 }

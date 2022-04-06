@@ -14,7 +14,9 @@
   "dependencies": {
     "@socket.io/admin-ui": "^0.2.0",
     "cors": "^2.8.5",
+    "cycle": "^1.0.3",
     "express": "^4.17.3",
+    "json-decycle": "^2.0.1",
     "sequelize": "^6.17.0",
     "socket.io": "^4.4.1",
     "sqlite3": "^5.0.2"

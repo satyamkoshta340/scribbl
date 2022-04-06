@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const Sessions = require("./routes/sessions");
 const http = require('http');
 // const { isObject } = require('util');
 var cors = require('cors');
@@ -14,21 +13,23 @@ app.use(cors());
 //   res.set("Access-Control-Allow-Headers", "Content-type")
 //   next();
 // })
-
+app.use(express.json());
 const ChatHandlers = require("./handlers/chat_handlers");
 const CanvasHandlers = require("./handlers/canvas_handlers");
+const SessionHandler = require("./handlers/game_session");
 const GameSocketService = require("./services/game_socket.js");
+
+
 let gameSocket = new GameSocketService();
 gameSocket.init(server);
 
+
 ChatHandlers(gameSocket.getInstance());
 CanvasHandlers(gameSocket.getInstance());
+SessionHandler(gameSocket.getInstance());
 // const { instrument } = require("@socket.io/admin-ui");
 
 
-
-
-app.use("/api", Sessions );
 app.get("/", (req, res)=>{
   res.send("hello");
 });
