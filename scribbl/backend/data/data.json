@@ -10,5 +10,8 @@
         "umbrella",
         "bike",
         "shirt"
-    ]
+    ],
+
+    "LINK":  "https://scribbl-backend.herokuapp.com/ | https://git.heroku.com/scribbl-backend.git"
+  
 }
