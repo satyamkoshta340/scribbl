@@ -11,6 +11,7 @@ socket.on("connect", ()=>{
   console.log(socket.id);
 })
 // const BASE_URL = "http://127.0.0.1:8000/api/sessions";
+//const BASE_URL = "https://scribbl-server.herokuapp.com/";
 export default function Home({name, setName, setFlag}) {
   const [isGenerated, setIsGenerated] = useState(false);
   
@@ -53,7 +54,7 @@ export default function Home({name, setName, setFlag}) {
         {
           !isGenerated && <>
             <div>
-              <input type="text" id='name-input' onChange={(e)=>{setName(e.target.value)}}></input>
+              <input type="text" id='name-input' placeholder='Name' onChange={(e)=>{setName(e.target.value)}}></input>
             </div>
             <div className="btn" onClick={()=>{ startSession()}}>Generate Room</div>
 
