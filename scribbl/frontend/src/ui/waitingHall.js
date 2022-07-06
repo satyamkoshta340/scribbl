@@ -26,7 +26,7 @@ export default function WaitingHall({timer , rounds, setRounds, setTimer}) {
   socket.on("room/sync", (activePlayers, host)=>{
     setPlayers(activePlayers);
     // console.log(players);
-    if(socket.id == host) setIsHost(true);
+    if(socket.id === host) setIsHost(true);
   })
 
   useEffect(()=>{
@@ -46,7 +46,7 @@ export default function WaitingHall({timer , rounds, setRounds, setTimer}) {
   return (
     <div className='root flex-col-conatiner'>
         
-        <h1>Scribbl</h1>
+        <h1 id="title">Scribbl</h1>
         
         <div className='flex-container'>
           <div className=  {`waitingHall-btn setting-btn ${settingVisibility && "active"}`}  onClick={()=> toggleSetting()}>S</div>

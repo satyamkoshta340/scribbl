@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 import GameSocket from "../services/gameSocket";
 import Avatar from '../components/avatar';
 
-
 const socket = GameSocket.getSocket();
-// console.log(socket);
+
 socket.on("connect", ()=>{
   console.log("connected")
   console.log(socket.id);
 })
-// const BASE_URL = "http://127.0.0.1:8000/api/sessions";
-//const BASE_URL = "https://scribbl-server.herokuapp.com/";
+
 export default function Home({name, setName, setFlag}) {
   const [isGenerated, setIsGenerated] = useState(false);
   
@@ -47,9 +45,9 @@ export default function Home({name, setName, setFlag}) {
   }
   return (
 
-    <div className='flex-col-container root' >
+    <div className='flex-col-container root' id='home'>
         {/* <div className='flex-container btn logo'>LOGO</div> */}
-        <h1>Scribbl</h1>
+        <h1 id="title">Scribbl</h1>
         <Avatar />
         {
           !isGenerated && <>
@@ -58,39 +56,20 @@ export default function Home({name, setName, setFlag}) {
             </div>
             <div className="btn" onClick={()=>{ startSession()}}>Generate Room</div>
 
-            <div>
+            <div className='info'>
               Generate room link to share with your Friends.
             </div>
           </>
         }
         {
           isGenerated && <>
-            <div id='game-link'>
-              {`http://127.0.0.1:3000/landing/${sessionId}`}
+            <div id='game-link' className='info'>
+              {`https://scribbl-frontend.herokuapp.com/landing/${sessionId}`}
             </div>
-            <div className='btn'  onClick={()=> CopyToClipboard("game-link")}>copy</div>
+            <div className='btn'  onClick={()=> CopyToClipboard("game-link")}>Copy</div>
             <Link to={`/waitingHall/${sessionId}`} className='flex-container btn start'>Start</Link>
           </>
         }
     </div>
   )
 }
-
-// const response = await fetch(`${BASE_URL}`,{ 
-    //   method: "POST",
-      
-    //   headers:{
-    //       'Content-Type': 'application/json'
-    //   },
-    //   mode: 'cors',
-    //   body: JSON.stringify({
-    //     'name': name,
-    //     'gameSocket': JSON.stringify(socket, decycle())
-    //   }),
-      
-    // })
-    
-    
-    // const gameSession = await response.json();
-    // // console.log(session);
-    // setSession(gameSession.session);

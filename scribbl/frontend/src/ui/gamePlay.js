@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import Canvas from "../components/canvas";
 import Chat from  "../components/chat";
 import GameSocket from '../services/gameSocket';
@@ -13,7 +13,7 @@ export default function GamePlay({timer, rounds, setRounds, name}) {
   const [leaderBoard, setLeaderBoared] = useState({});
   const [end, setEnd] = useState(false);
 
-  let canvas;
+  const canvas = useRef();
   let params = useParams()
   const id = params.id;
   let popup;
@@ -71,18 +71,14 @@ export default function GamePlay({timer, rounds, setRounds, name}) {
   
 
   useEffect(()=>{
-    // console.log(id);
-    canvas = document.getElementById("canvas");
     if(drawer){
-      canvas.classList.remove("disabled");
+      canvas.current.classList.remove("disabled");
     }
     else {
-      if(!canvas.classList.contains("disabled")){
-        canvas.classList.add("disabled");
+      if(!canvas.current.classList.contains("disabled")){
+        canvas.current.classList.add("disabled");
       }
     }
-    // socket.emit("room/sync", id);
-    // socket.emit("start-rounds", id);
   }, [drawer])
 
   socket.on("end-game", (leaderBoard)=>{
@@ -96,7 +92,7 @@ export default function GamePlay({timer, rounds, setRounds, name}) {
   
   return (
     <div className='root'>
-      <h1 className='title'>Scribbl</h1>
+      <h1 className='title' id='title'>Scribbl</h1>
       <div className='clock'>{clock}</div>
       <div className='flex-container-space-even'>
         <div className='player-container'>
@@ -119,7 +115,7 @@ export default function GamePlay({timer, rounds, setRounds, name}) {
             </>
           }
           
-          <div id='canvas'>
+          <div id='canvas' ref={canvas}>
             <Canvas />
           </div>
         </div>

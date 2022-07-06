@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Link, useParams} from "react-router-dom";
 import GameSocket from "../services/gameSocket";
 import Avatar from '../components/avatar';
@@ -27,11 +27,11 @@ export default function Landing({name, setName, flag}) {
   return (
     <div className='flex-col-container root'>
         {/* <div className='logo' id='logo-landing'>LOGO</div> */}
-        <h1>Scribbl</h1>
+        <h1 id='title'>Scribbl</h1>
         {
           !flag && <>
             <div>
-              <input type="text" id='name-input' onChange={(e)=>{setName(e.target.value)}}></input>
+              <input type="text" id='name-input' onChange={(e)=>{setName(e.target.value)}} placeholder="Name"></input>
             </div>
           </>
         }
